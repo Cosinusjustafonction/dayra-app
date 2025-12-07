@@ -5,28 +5,54 @@
 
 import { Platform } from 'react-native';
 
-// Base URL - Auto-detect environment
-// Web: Uses Vercel serverless API
-// Native: Uses local backend server
-const getBaseUrl = () => {
-    if (Platform.OS === 'web') {
-        // On Vercel, the API is at /api
-        if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
-            return '/api';
-        }
-        return 'http://localhost:3001';
-    }
-    // For native (iOS/Android), use local IP
-    return 'http://10.56.170.196:3001';
+// Check if running on Vercel (web production)
+const isVercelProduction = Platform.OS === 'web' &&
+    typeof window !== 'undefined' &&
+    window.location.hostname !== 'localhost';
+
+// Base URL for native apps
+const API_BASE_URL = Platform.OS === 'web'
+    ? 'http://localhost:3001'
+    : 'http://10.56.170.196:3001';
+
+// Mock data for web demo (when backend not available)
+const MOCK_DATA = {
+    balance: { result: { balance: [{ value: '15750.50', type: 'Available' }] } },
+    transactions: {
+        result: [
+            { id: 1, type: 'credit', amount: 5000, category: 'deposit', merchant: 'Cash In', date: new Date().toISOString() },
+            { id: 2, type: 'debit', amount: 85, category: 'Food & Dining', merchant: 'Café Atlas', date: new Date().toISOString() },
+            { id: 3, type: 'debit', amount: 250, category: 'Shopping', merchant: 'Marjane', date: new Date().toISOString() },
+        ]
+    },
+    users: {
+        users: [
+            { first_name: 'Ahmed', phone_number: '+212612345678', contract_id: 'LAN2400000000000001' },
+            { first_name: 'Sara', phone_number: '+212698765432', contract_id: 'LAN2400000000000002' },
+        ]
+    },
+    creditScore: {
+        score: 725, grade: 'Good',
+        factors: { paymentHistory: 85, bnplReliability: 80, socialTrust: 70, transactionDiversity: 75, financialDiscipline: 65, accountHealth: 78 },
+        insights: ['On-time BNPL payments boosting your score', 'Active Daret participation adds social trust'],
+        eligibility: { creditCard: true, personalLoan: true, bnplLimit: 15000 },
+    },
 };
 
-const API_BASE_URL = getBaseUrl();
-
-
 /**
- * Generic API request handler
+ * Generic API request handler with mock fallback for web
  */
 const apiRequest = async (endpoint, options = {}) => {
+    // On Vercel production, use mock data
+    if (isVercelProduction) {
+        console.log('Using demo data (Vercel mode)');
+        if (endpoint.includes('/wallet/balance')) return MOCK_DATA.balance;
+        if (endpoint.includes('/wallet/operations') || endpoint.includes('/transactions')) return MOCK_DATA.transactions;
+        if (endpoint.includes('/demo/users')) return MOCK_DATA.users;
+        if (endpoint.includes('/credit-score')) return MOCK_DATA.creditScore;
+        return { result: { success: true } };
+    }
+
     try {
         const url = `${API_BASE_URL}${endpoint}`;
         const response = await fetch(url, {
