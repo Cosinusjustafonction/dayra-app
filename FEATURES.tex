@@ -1,0 +1,620 @@
+\documentclass[12pt,a4paper]{article}
+
+% Basic packages only (compatible with TeX Live Basic)
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{enumitem}
+
+% Page geometry
+\geometry{margin=2.5cm}
+
+% Colors
+\definecolor{cihprimary}{HTML}{38B2AC}
+\definecolor{cihsecondary}{HTML}{F37021}
+\definecolor{cihdark}{HTML}{1E293B}
+\definecolor{cihmuted}{HTML}{64748B}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cihprimary,
+    urlcolor=cihsecondary,
+    pdftitle={CIH Wallet - Features Documentation},
+    pdfauthor={CIH Bank}
+}
+
+% Simple quote environment
+\newenvironment{myquote}{\begin{quote}\itshape}{\end{quote}}
+
+% Document
+\begin{document}
+
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    
+    {\Huge\bfseries\textcolor{cihprimary}{CIH Wallet}\par}
+    \vspace{0.5cm}
+    {\Large\textcolor{cihdark}{The Future of Banking is Here}\par}
+    
+    \vspace{2cm}
+    
+    \begin{myquote}
+        \centering
+        \Large Your Money. Your Rules. Your Life.
+    \end{myquote}
+    
+    \vspace{2cm}
+    
+    {\large Morocco's most innovative mobile banking experience designed for the Gen-Z hustler, the ambitious entrepreneur, and everyone who believes banking should be as smart as they are.\par}
+    
+    \vfill
+    
+    {\large\textcolor{cihmuted}{Features \& Technical Documentation}\par}
+    \vspace{1cm}
+    {\normalsize\textcolor{cihmuted}{\textcopyright\ 2024 CIH Bank. All rights reserved.}\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ============================================
+% PART 1: USER FEATURES
+% ============================================
+\part{User Features}
+
+\section{Instant P2P Transfers}
+
+\subsection{The Problem}
+You're at a caf\'e with friends. The bill comes. Someone pays. Now you need to send them money. Traditional banks? They'll make you wait. Fill out forms. Pay hefty fees. \textit{It's 2024 -- why is sending money still so hard?}
+
+\subsection{The Solution}
+\textbf{Send money in seconds.} Just tap, enter the amount, and boom -- your friend has the cash before the waiter comes back with the receipt.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Instant transfers} to any CIH Wallet user
+    \item \textbf{Just a phone number} -- no complicated RIBs or IBANs
+    \item \textbf{Minimal fees} -- keep more of your money
+    \item \textbf{Real-time confirmation} -- know it's done, instantly
+\end{itemize}
+
+% ============================================
+\section{Shop \& Split -- Buy Now, Pay Later (BNPL)}
+
+\subsection{The Problem}
+You found the perfect jacket at Zara. The laptop you need is at Electroplanet. But your budget says ``wait until payday.'' Traditional credit? High interest. Complicated approval. Weeks of waiting. \textit{Your dreams shouldn't have to wait.}
+
+\subsection{The Solution}
+\textbf{Split it in 4. Zero interest. Zero hassle.}
+
+With \textbf{Shop \& Split}, you can shop at Morocco's favorite stores and pay in 4 easy monthly installments. No credit checks. No hidden fees. Just pure freedom.
+
+\subsubsection{Partner Stores}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Marjane} -- Your grocery runs, split smoothly
+    \item \textbf{Zara} -- Fashion now, pay later
+    \item \textbf{Ikea} -- Build your dream home, one payment at a time
+    \item \textbf{Decathlon} -- Gear up for your goals
+    \item \textbf{Electroplanet} -- Tech upgrades made affordable
+    \item \textbf{Virgin Megastore} -- Entertainment without the wait
+\end{itemize}
+
+\subsubsection{How It Works}
+\begin{enumerate}
+    \item Shop at any partner store
+    \item Choose ``Split in 4'' at checkout
+    \item Pay 25\% today
+    \item Pay the rest over 3 months
+    \item \textbf{That's it. No interest. No tricks.}
+\end{enumerate}
+
+% ============================================
+\section{Daret -- Traditional Savings, Reimagined}
+
+\subsection{The Problem}
+You know Daret -- the trusted Moroccan tradition where friends pool money together. But managing it manually? Tracking who paid? Chasing late payments? \textit{It's a headache nobody asked for.}
+
+\subsection{The Solution}
+\textbf{Daret, but make it digital.}
+
+Create or join savings circles with friends and family. We handle the tracking, the reminders, and the math. You just focus on saving.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Invite your circle} -- Friends, family, colleagues
+    \item \textbf{Set your schedule} -- Weekly, bi-weekly, monthly
+    \item \textbf{Automatic reminders} -- No more awkward ``did you pay?'' texts
+    \item \textbf{Transparent tracking} -- Everyone sees who paid and who's next
+    \item \textbf{Build trust, build wealth} -- Together
+\end{itemize}
+
+% ============================================
+\section{Borrow \& Lend -- P2P Lending Made Simple}
+
+\subsection{The Problem}
+Your friend needs 500 DH until payday. You want to help, but tracking debts on paper (or worse, in your head) leads to forgotten promises and awkward conversations. \textit{Money and friendships shouldn't be enemies.}
+
+\subsection{The Solution}
+\textbf{Request money. Lend money. Track it all.}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Send borrow requests} -- No shame, just a simple tap
+    \item \textbf{Accept or decline} -- Your money, your choice
+    \item \textbf{Automatic tracking} -- We remember so you don't have to
+    \item \textbf{Gentle reminders} -- Stay on top of who owes what
+    \item \textbf{Keep friendships intact} -- Money drama, eliminated
+\end{itemize}
+
+% ============================================
+\section{Multi-Wallet Management}
+
+\subsection{The Problem}
+You've got different financial goals -- savings for that trip to Marrakech, a budget for online shopping, emergency funds. But one account for everything? That's chaos. \textit{Your money deserves organization.}
+
+\subsection{The Solution}
+\textbf{Create wallets for every goal.}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Vacation Fund} -- Watch your dream trip get closer
+    \item \textbf{Shopping Wallet} -- Guilt-free spending
+    \item \textbf{Emergency Savings} -- Peace of mind, always
+    \item \textbf{Custom Goals} -- Name it. Fund it. Achieve it.
+\end{itemize}
+
+Switch between wallets in a tap. See your balances at a glance. Stay in control, always.
+
+% ============================================
+\section{Smart Analytics}
+
+\subsection{The Problem}
+``Where did all my money go?'' -- The monthly question nobody wants to ask. Spreadsheets are boring. Bank statements are confusing. \textit{Understanding your spending shouldn't require a finance degree.}
+
+\subsection{The Solution}
+\textbf{Beautiful charts. Clear insights. Smarter spending.}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Category Breakdown} -- Food, Shopping, Transport, Entertainment
+    \item \textbf{Income vs. Spending} -- Are you winning or losing?
+    \item \textbf{Spending Trends} -- Track your progress over time
+    \item \textbf{Tap for Details} -- See exactly what you spent and where
+\end{itemize}
+
+\textit{Finally, an answer to ``Where did my money go?''}
+
+% ============================================
+\section{Gigs -- Earn Extra Cash}
+
+\subsection{The Problem}
+You've got skills. You've got time. But finding opportunities? That's the hard part. Freelance platforms take huge cuts. Local jobs are hard to find. \textit{Your hustle deserves better.}
+
+\subsection{The Solution}
+\textbf{Discover gigs near you. Get paid instantly.}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Browse opportunities} -- Delivery, tutoring, design, and more
+    \item \textbf{Transparent pay} -- Know exactly what you'll earn
+    \item \textbf{Instant payouts} -- Get paid directly to your wallet
+    \item \textbf{Build your reputation} -- Great reviews = more gigs
+\end{itemize}
+
+\textit{Turn your free time into cash flow.}
+
+% ============================================
+\section{Map -- Find ATMs \& Agents}
+
+\subsection{The Problem}
+You need cash, but which ATM is closest? Is it even working? Where's the nearest CIH agent? \textit{Wandering around hoping to find one isn't a strategy.}
+
+\subsection{The Solution}
+\textbf{Every CIH point, on your map.}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Real-time locations} -- ATMs, agents, branches
+    \item \textbf{Get directions} -- One tap to navigate
+    \item \textbf{ATM status} -- Know before you go
+    \item \textbf{Filter by service} -- Cash out, deposits, support
+\end{itemize}
+
+% ============================================
+\section{Smart Notifications}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Transaction alerts} -- Every credit, every debit
+    \item \textbf{Borrow requests} -- Someone needs your help
+    \item \textbf{Payment reminders} -- Never miss a deadline
+    \item \textbf{Milestone celebrations} -- Hit your savings goal? We'll cheer!
+\end{itemize}
+
+% ============================================
+\section{Security}
+
+Built on CIH Bank's proven infrastructure with enterprise-grade security:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{OTP Verification} -- Every sensitive action, protected
+    \item \textbf{Encrypted transactions} -- Your data, locked tight
+    \item \textbf{Device authentication} -- Only you can access your wallet
+    \item \textbf{Real-time fraud detection} -- We watch, so you don't have to
+\end{itemize}
+
+\newpage
+
+% ============================================
+% PART 2: BEHAVIORAL INTELLIGENCE
+% ============================================
+\part{Behavioral Intelligence}
+
+\begin{myquote}
+This isn't just an app. It's a data goldmine.
+\end{myquote}
+
+\section{Lifetime Financial Profiling}
+
+\subsection{The Opportunity}
+Traditional banks only know their customers through forms and credit scores. They guess. They assume. They get it wrong. \textit{What if you could truly understand your customers from day one?}
+
+\subsection{The CIH Advantage}
+\textbf{Capture the customer journey from student to CEO.}
+
+When a university student opens their first CIH Wallet, we begin building the most valuable asset in banking: \textbf{a complete financial behavior profile}.
+
+\subsubsection{What We Track}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Spending Categories} -- Food, transport, entertainment, education
+    \item \textbf{Cash Flow Patterns} -- When they receive money, when they spend it
+    \item \textbf{Timing Behaviors} -- Do they spend on payday? Do they save at month-end?
+    \item \textbf{Financial Discipline} -- Do they stick to budgets? Do they set goals?
+    \item \textbf{Transaction Frequency} -- Daily spender vs. bulk buyer
+\end{itemize}
+
+\subsection{Example Customer Journey}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Life Stage} & \textbf{What We Learn} & \textbf{What We Offer} \\
+\midrule
+Student & Textbooks, transport, weekends & Student discounts \\
+First Job & Salary deposits, rent, shopping & Credit card, savings \\
+Growing Career & Higher income, travel, dining & Premium card, investments \\
+Family Life & Baby products, insurance & Home loan, family insurance \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{No other bank in Morocco has this data. This is CIH's moat.}
+
+% ============================================
+\section{Predictive Product Matching}
+
+\textbf{AI-powered recommendations based on REAL behavior, not demographics.}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Detected Behavior} & \textbf{Automatic Recommendation} \\
+\midrule
+High taxi/transport spending & Car loan at 4.5\% \\
+Consistent rent payments & Mortgage pre-qualification \\
+Regular international transfers & Multi-currency account \\
+Frequent BNPL usage & Credit card upgrade \\
+Daret participation & Higher savings rates \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================
+\section{Social Graph Mapping}
+
+\subsection{The Hidden Treasure}
+Every transfer tells a story. Every borrow request reveals a relationship. Every Daret circle maps a community. \textit{This is social data that even Facebook doesn't have.}
+
+\subsection{Data Points Captured}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Who sends money to whom} -- And how often
+    \item \textbf{Transfer amounts} -- Small (social) vs. large (family support)
+    \item \textbf{Reciprocity patterns} -- Who pays back? Who doesn't?
+    \item \textbf{Household detection} -- Multiple users sharing expenses = family
+    \item \textbf{Business relationships} -- Regular payments = employment
+    \item \textbf{Student networks} -- Dorm mates, study groups
+\end{itemize}
+
+\subsection{Business Intelligence Value}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Insight} & \textbf{Business Value} \\
+\midrule
+Influencer Detection & Potential brand ambassadors \\
+Household Mapping & Family bundles, joint accounts \\
+Employer Identification & Target salary accounts \\
+Community Clusters & Targeted campaigns \\
+Credit Risk Assessment & Trustworthiness indicators \\
+Churn Prediction & Network-based retention \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+% ============================================
+% PART 3: CREDIT SCORING SYSTEM
+% ============================================
+\part{CIH Credit Score}
+
+\begin{myquote}
+Morocco's First True Behavioral Credit System
+\end{myquote}
+
+\section{The Problem with Traditional Credit Scoring}
+
+Morocco has \textbf{no centralized credit bureau} like FICO in the US or Experian in Europe. Banks rely on:
+
+\begin{itemize}[leftmargin=*]
+    \item Employment letters (easily forged)
+    \item Salary slips (doesn't show spending behavior)
+    \item Collateral (excludes young people)
+    \item Gut feeling (inconsistent, biased)
+\end{itemize}
+
+\textit{Result: Millions of creditworthy Moroccans can't access credit because they have no formal ``credit history.''}
+
+\section{The CIH Wallet Solution}
+
+By tracking actual financial behavior within the app, CIH can build \textbf{Morocco's first true alternative credit scoring system}.
+
+% ============================================
+\section{Data Extraction by Feature}
+
+\subsection{P2P Transfers}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Data Extracted} & \textbf{Credit Impact} & \textbf{AI Use Case} \\
+\midrule
+Transfer frequency & Financial health indicator & Cash flow prediction \\
+Consistent recipients & Family responsibility & Identify dependents \\
+Amounts vs. balance & Discipline metric & Credit limit calc \\
+Transfer timing & Bill payment patterns & Expense prediction \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Credit Score Factor: Transaction Diversity (+15 points max)}
+
+\subsection{BNPL (Shop \& Split)}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Data Extracted} & \textbf{Credit Impact} & \textbf{AI Use Case} \\
+\midrule
+On-time payments & High reliability & Loan automation \\
+Plans completed & Proven track record & Credit limit increase \\
+Average purchase & Predictable behavior & Recommendations \\
+Missed payments & Risk flag & Early warning \\
+Store categories & Lifestyle profiling & Product matching \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Credit Score Factor: BNPL Reliability (+30 points max)}
+
+\subsection{Daret (Savings Circles)}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Data Extracted} & \textbf{Credit Impact} & \textbf{AI Use Case} \\
+\midrule
+Participation rate & Financial responsibility & Savings targeting \\
+Payment punctuality & Trustworthiness & Risk assessment \\
+Circle completion & Commitment level & Social trust \\
+Organizer role & Leadership indicator & Premium ID \\
+Circle size & Peer trust level & Credibility score \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Credit Score Factor: Social Trust (+20 points max)}
+
+\subsection{Other Features}
+\begin{itemize}
+    \item \textbf{Borrow \& Lend} -- Payment History (+25 points max)
+    \item \textbf{Multi-Wallet} -- Financial Discipline (+10 points max)
+    \item \textbf{Spending Analytics} -- Account Health (+15 points max)
+    \item \textbf{Social Graph} -- Network Trust (+10 points max)
+\end{itemize}
+
+% ============================================
+\section{Credit Score Calculation}
+
+\subsection{Score Components}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Factor} & \textbf{Weight} & \textbf{Max Points} & \textbf{Data Source} \\
+\midrule
+Payment History & 25\% & 25 & BNPL, P2P repayments \\
+BNPL Reliability & 25\% & 30 & Shop \& Split \\
+Social Trust & 15\% & 20 & Daret, network \\
+Transaction Diversity & 15\% & 15 & P2P, spending \\
+Financial Discipline & 10\% & 10 & Wallet management \\
+Account Health & 10\% & 15 & Balance trends \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Score Ranges}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Score} & \textbf{Grade} & \textbf{Meaning} & \textbf{Eligibility} \\
+\midrule
+750--850 & Excellent & Top-tier behavior & All products, best rates \\
+700--749 & Good & Reliable user & Credit cards, loans \\
+650--699 & Fair & Building history & Higher BNPL limits \\
+600--649 & Building & New user & Standard BNPL \\
+$<$600 & Limited & Needs improvement & Basic features only \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================
+\section{AI/ML Applications}
+
+\subsection{Credit Risk Automation}
+
+\begin{verbatim}
+INPUT:
+- Transaction history (6+ months)
+- BNPL repayment record
+- Daret participation
+- Social graph quality
+- Spending patterns
+
+OUTPUT:
+- Credit Score (600-850)
+- Risk Category (Low/Medium/High)
+- Recommended Credit Limit
+- Interest Rate Tier
+- Approval Decision
+\end{verbatim}
+
+\subsection{Personalized Product Recommendations}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{User Behavior} & \textbf{AI Recommendation} \\
+\midrule
+High transport spending & Car loan, fuel card \\
+Regular rent payments & Mortgage pre-qualification \\
+Frequent BNPL usage & Credit card upgrade \\
+Growing savings wallet & Investment products \\
+Active Daret participation & Higher savings rates \\
+International transfers & Multi-currency account \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Churn Prediction \& Fraud Detection}
+
+\textbf{Churn Signals:} Declining transactions, decreasing balance, network leaving, failed transactions.
+
+\textbf{Fraud Signals:} Unusual amounts, new device, new locations, rapid transfers.
+
+\newpage
+
+% ============================================
+% PART 4: BUSINESS VALUE
+% ============================================
+\part{Strategic Value}
+
+\section{The Business Value}
+
+\subsection{For CIH}
+
+\begin{enumerate}
+    \item \textbf{Automate 80\% of credit decisions} -- Reduce manual review costs
+    \item \textbf{Reduce default rates by 40\%} -- Better risk prediction
+    \item \textbf{Increase loan volume 3x} -- Serve the ``unbanked'' creditworthy
+    \item \textbf{Cross-sell with 5x higher conversion} -- Right product, right time
+    \item \textbf{Reduce churn by 30\%} -- Predict and prevent
+\end{enumerate}
+
+\subsection{For Customers}
+
+\begin{enumerate}
+    \item \textbf{Access credit without paperwork} -- Just use the app
+    \item \textbf{Build credit history by living} -- No special actions needed
+    \item \textbf{Get fair rates based on behavior} -- Not assumptions
+    \item \textbf{Transparent scoring} -- Know exactly why and how
+    \item \textbf{Improve score over time} -- Clear path to better terms
+\end{enumerate}
+
+\section{The Vision}
+
+\begin{myquote}
+Every Moroccan who uses CIH Wallet is building their financial identity.
+\end{myquote}
+
+From the university student buying their first laptop on BNPL, to the entrepreneur managing multiple wallets, to the parent saving for their child's education through Daret -- every action is a data point.
+
+\textbf{CIH doesn't just know its customers. CIH understands them.}
+
+\section{Executive Summary}
+
+\textbf{CIH Wallet isn't an expense. It's an investment in the future of banking.}
+
+\subsection{For CIH Leadership}
+
+\begin{enumerate}
+    \item \textbf{Acquire customers YOUNG} -- Lock them in for life
+    \item \textbf{Understand behavior, not just balances} -- Sell the right products
+    \item \textbf{Build a social graph} -- Know relationships, predict needs
+    \item \textbf{Create a data moat} -- Competitors can't replicate time
+    \item \textbf{Enable AI-powered banking} -- The data foundation for tomorrow
+\end{enumerate}
+
+\subsection{The Bottom Line}
+
+Every transaction processed by CIH Wallet adds to an irreplaceable dataset that will power CIH's competitive advantage for the next decade.
+
+\textit{This is how you build the bank of the future.}
+
+\section{Why CIH Wallet?}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Traditional Banking} & \textbf{CIH Wallet} \\
+\midrule
+Long queues & Instant everything \\
+Confusing statements & Beautiful analytics \\
+High fees & Minimal costs \\
+Rigid savings & Flexible multi-wallets \\
+Paper-based Daret & Digital TONTINE \\
+Credit card applications & BNPL in seconds \\
+Guessing customer needs & Knowing customer behavior \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vfill
+
+\begin{center}
+\Large\textbf{CIH Wallet -- Bank Smart. Live Free.}
+
+\vspace{1cm}
+
+\textcolor{cihmuted}{\textcopyright\ 2024 CIH Bank. All rights reserved.}
+\end{center}
+
+\end{document}
