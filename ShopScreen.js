@@ -31,6 +31,15 @@ export default function ShopScreen({ navigation }) {
     const [profileModalVisible, setProfileModalVisible] = useState(false);
     const [creditScore, setCreditScore] = useState(null);
     const [isProcessing, setIsProcessing] = useState(false);
+    const [paymentSchedule, setPaymentSchedule] = useState('biweekly'); // 'monthly' or 'biweekly'
+
+    // Calculate fee based on payment schedule
+    const calculateTotal = (price) => {
+        if (!price) return { total: 0, fee: 0, installment: 0 };
+        const fee = paymentSchedule === 'monthly' ? price * 0.05 : 0;
+        const total = price + fee;
+        return { total, fee, installment: total / 4 };
+    };
 
     const fetchData = async () => {
         setIsLoading(true);
@@ -322,19 +331,58 @@ export default function ShopScreen({ navigation }) {
                                 <Text style={styles.productNameLarge}>{selectedProduct?.name}</Text>
                                 <Text style={styles.productPriceLarge}>{selectedProduct?.price} DH</Text>
 
+                                {/* Payment Schedule Selection */}
+                                <View style={styles.scheduleContainer}>
+                                    <Text style={styles.scheduleTitle}>Choose Payment Schedule</Text>
+
+                                    <TouchableOpacity
+                                        style={[styles.scheduleOption, paymentSchedule === 'biweekly' && styles.scheduleOptionSelected]}
+                                        onPress={() => setPaymentSchedule('biweekly')}
+                                    >
+                                        <View style={styles.scheduleHeader}>
+                                            <View style={[styles.radioCircle, paymentSchedule === 'biweekly' && styles.radioCircleSelected]} />
+                                            <Text style={styles.scheduleOptionTitle}>Every 2 Weeks</Text>
+                                            <View style={styles.freeTag}>
+                                                <Text style={styles.freeTagText}>0% FEE</Text>
+                                            </View>
+                                        </View>
+                                        <Text style={styles.scheduleDetail}>4 payments of {(selectedProduct?.price / 4).toFixed(0)} DH</Text>
+                                        <Text style={styles.scheduleTotal}>Total: {selectedProduct?.price} DH</Text>
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity
+                                        style={[styles.scheduleOption, paymentSchedule === 'monthly' && styles.scheduleOptionSelected]}
+                                        onPress={() => setPaymentSchedule('monthly')}
+                                    >
+                                        <View style={styles.scheduleHeader}>
+                                            <View style={[styles.radioCircle, paymentSchedule === 'monthly' && styles.radioCircleSelected]} />
+                                            <Text style={styles.scheduleOptionTitle}>Every Month</Text>
+                                            <View style={styles.feeTag}>
+                                                <Text style={styles.feeTagText}>5% FEE</Text>
+                                            </View>
+                                        </View>
+                                        <Text style={styles.scheduleDetail}>4 payments of {((selectedProduct?.price * 1.05) / 4).toFixed(0)} DH</Text>
+                                        <Text style={styles.scheduleTotal}>Total: {(selectedProduct?.price * 1.05).toFixed(0)} DH (+{(selectedProduct?.price * 0.05).toFixed(0)} DH fee)</Text>
+                                    </TouchableOpacity>
+                                </View>
+
                                 <View style={styles.breakdownContainer}>
-                                    <Text style={styles.breakdownTitle}>Split in 4 Payments</Text>
+                                    <Text style={styles.breakdownTitle}>Payment Timeline</Text>
                                     <View style={styles.timeline}>
-                                        {[0, 1, 2, 3].map(i => (
-                                            <React.Fragment key={i}>
-                                                <View style={styles.timelineItem}>
-                                                    <View style={[styles.timelineDot, i === 0 && styles.timelineDotActive]} />
-                                                    <Text style={styles.timelineDate}>{i === 0 ? 'Today' : `+${i * 30}d`}</Text>
-                                                    <Text style={styles.timelineAmount}>{(selectedProduct?.price / 4).toFixed(0)} DH</Text>
-                                                </View>
-                                                {i < 3 && <View style={styles.timelineLine} />}
-                                            </React.Fragment>
-                                        ))}
+                                        {[0, 1, 2, 3].map(i => {
+                                            const { installment } = calculateTotal(selectedProduct?.price);
+                                            const dayInterval = paymentSchedule === 'biweekly' ? 14 : 30;
+                                            return (
+                                                <React.Fragment key={i}>
+                                                    <View style={styles.timelineItem}>
+                                                        <View style={[styles.timelineDot, i === 0 && styles.timelineDotActive]} />
+                                                        <Text style={styles.timelineDate}>{i === 0 ? 'Today' : `+${i * dayInterval}d`}</Text>
+                                                        <Text style={styles.timelineAmount}>{installment.toFixed(0)} DH</Text>
+                                                    </View>
+                                                    {i < 3 && <View style={styles.timelineLine} />}
+                                                </React.Fragment>
+                                            );
+                                        })}
                                     </View>
                                 </View>
 
@@ -346,7 +394,9 @@ export default function ShopScreen({ navigation }) {
                                     {isProcessing ? (
                                         <ActivityIndicator color={COLORS.white} />
                                     ) : (
-                                        <Text style={styles.confirmButtonText}>Pay {(selectedProduct?.price / 4).toFixed(2)} DH Now</Text>
+                                        <Text style={styles.confirmButtonText}>
+                                            Pay {calculateTotal(selectedProduct?.price).installment.toFixed(2)} DH Now
+                                        </Text>
                                     )}
                                 </TouchableOpacity>
                             </View>
@@ -945,5 +995,84 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: COLORS.primary,
         textAlign: 'center',
+    },
+    // Payment Schedule Styles
+    scheduleContainer: {
+        width: '100%',
+        marginBottom: 20,
+    },
+    scheduleTitle: {
+        fontSize: 16,
+        fontWeight: '700',
+        color: COLORS.text,
+        marginBottom: 12,
+    },
+    scheduleOption: {
+        backgroundColor: '#F9FAFB',
+        borderRadius: 12,
+        padding: 16,
+        marginBottom: 12,
+        borderWidth: 2,
+        borderColor: '#E5E7EB',
+    },
+    scheduleOptionSelected: {
+        borderColor: COLORS.primary,
+        backgroundColor: '#F3E8FF',
+    },
+    scheduleHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 8,
+    },
+    radioCircle: {
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: '#D1D5DB',
+        marginRight: 12,
+    },
+    radioCircleSelected: {
+        borderColor: COLORS.primary,
+        backgroundColor: COLORS.primary,
+    },
+    scheduleOptionTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: COLORS.text,
+        flex: 1,
+    },
+    freeTag: {
+        backgroundColor: '#10B981',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 12,
+    },
+    freeTagText: {
+        color: '#FFFFFF',
+        fontSize: 11,
+        fontWeight: '700',
+    },
+    feeTag: {
+        backgroundColor: '#F59E0B',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 12,
+    },
+    feeTagText: {
+        color: '#FFFFFF',
+        fontSize: 11,
+        fontWeight: '700',
+    },
+    scheduleDetail: {
+        fontSize: 14,
+        color: COLORS.textMuted,
+        marginLeft: 32,
+    },
+    scheduleTotal: {
+        fontSize: 13,
+        color: COLORS.textMuted,
+        marginLeft: 32,
+        marginTop: 4,
     },
 });
