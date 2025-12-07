@@ -314,7 +314,11 @@ export default function ShopScreen({ navigation }) {
                             </View>
 
                             <View style={styles.modalContent}>
-                                <Text style={styles.productEmojiLarge}>{selectedProduct?.image}</Text>
+                                <Image
+                                    source={{ uri: selectedProduct?.image }}
+                                    style={styles.productImageLarge}
+                                    resizeMode="cover"
+                                />
                                 <Text style={styles.productNameLarge}>{selectedProduct?.name}</Text>
                                 <Text style={styles.productPriceLarge}>{selectedProduct?.price} DH</Text>
 
@@ -788,9 +792,12 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: COLORS.primary,
     },
-    productEmojiLarge: {
-        fontSize: 80,
+    productImageLarge: {
+        width: 120,
+        height: 120,
+        borderRadius: 16,
         marginBottom: 16,
+        backgroundColor: '#F3F4F6',
     },
     productNameLarge: {
         fontSize: 24,
