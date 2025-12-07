@@ -278,7 +278,11 @@ export default function ShopScreen({ navigation }) {
                                         style={styles.productCard}
                                         onPress={() => handleProductPress(product)}
                                     >
-                                        <Text style={styles.productEmoji}>{product.image}</Text>
+                                        <Image
+                                            source={{ uri: product.image }}
+                                            style={styles.productImage}
+                                            resizeMode="cover"
+                                        />
                                         <View style={styles.productInfo}>
                                             <Text style={styles.productName}>{product.name}</Text>
                                             <Text style={styles.productPrice}>{product.price} DH</Text>
@@ -752,9 +756,12 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         marginBottom: 12,
     },
-    productEmoji: {
-        fontSize: 40,
+    productImage: {
+        width: 60,
+        height: 60,
+        borderRadius: 12,
         marginRight: 16,
+        backgroundColor: '#F3F4F6',
     },
     productInfo: {
         flex: 1,
