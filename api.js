@@ -1,13 +1,27 @@
 /**
- * CIH Wallet API Service
- * Connects the React Native frontend to the Node.js backend
+ * Dayra Wallet API Service
+ * Connects the React Native frontend to the backend
  */
 
-// Base URL - Using your computer's IP for mobile device access
-const API_BASE_URL = 'http://10.56.170.196:3001';
+import { Platform } from 'react-native';
 
-// For iOS Simulator, you can use localhost:
-// const API_BASE_URL = 'http://localhost:3001';
+// Base URL - Auto-detect environment
+// Web: Uses Vercel serverless API
+// Native: Uses local backend server
+const getBaseUrl = () => {
+    if (Platform.OS === 'web') {
+        // On Vercel, the API is at /api
+        if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+            return '/api';
+        }
+        return 'http://localhost:3001';
+    }
+    // For native (iOS/Android), use local IP
+    return 'http://10.56.170.196:3001';
+};
+
+const API_BASE_URL = getBaseUrl();
+
 
 /**
  * Generic API request handler
