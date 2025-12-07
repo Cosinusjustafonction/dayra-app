@@ -74,7 +74,18 @@ const MOCK_DATA = {
     },
     bnplPlans: {
         result: [
-            { id: 1, store: 'Marjane', product: 'Samsung TV 55"', total: 4999, paid: 2, remaining: 2, nextPayment: 1249.75, dueDate: '2024-02-15' },
+            {
+                id: 1,
+                store_name: 'Marjane',
+                store_logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Marjane_logo.svg/200px-Marjane_logo.svg.png',
+                product: 'Samsung TV 55"',
+                total_amount: 4999,
+                paid_amount: 2499.50,
+                total_installments: 4,
+                installments_paid: 2,
+                status: 'active',
+                created_at: '2024-01-15'
+            },
         ]
     },
 };
