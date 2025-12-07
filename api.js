@@ -37,6 +37,46 @@ const MOCK_DATA = {
         insights: ['On-time BNPL payments boosting your score', 'Active Daret participation adds social trust'],
         eligibility: { creditCard: true, personalLoan: true, bnplLimit: 15000 },
     },
+    stores: {
+        result: [
+            {
+                id: 1, name: 'Marjane', category: 'Supermarket', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Marjane_logo.svg/200px-Marjane_logo.svg.png', maxBnpl: 5000, products: [
+                    { id: 101, name: 'Samsung TV 55"', price: 4999, image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300' },
+                    { id: 102, name: 'iPhone 15 Pro', price: 12999, image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300' },
+                    { id: 103, name: 'MacBook Air M3', price: 14999, image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300' },
+                ]
+            },
+            {
+                id: 2, name: 'Zara', category: 'Fashion', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Zara_Logo.svg/200px-Zara_Logo.svg.png', maxBnpl: 3000, products: [
+                    { id: 201, name: 'Winter Jacket', price: 899, image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300' },
+                    { id: 202, name: 'Premium Suit', price: 1999, image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300' },
+                ]
+            },
+            {
+                id: 3, name: 'IKEA', category: 'Furniture', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ikea_logo.svg/200px-Ikea_logo.svg.png', maxBnpl: 8000, products: [
+                    { id: 301, name: 'MALM Bed Frame', price: 2499, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=300' },
+                    { id: 302, name: 'KALLAX Shelving', price: 699, image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300' },
+                ]
+            },
+            {
+                id: 4, name: 'Decathlon', category: 'Sports', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Decathlon_Logo.png/200px-Decathlon_Logo.png', maxBnpl: 4000, products: [
+                    { id: 401, name: 'Treadmill Pro', price: 3999, image: 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=300' },
+                    { id: 402, name: 'Mountain Bike', price: 2999, image: 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=300' },
+                ]
+            },
+            {
+                id: 5, name: 'Electroplanet', category: 'Electronics', logo: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=100', maxBnpl: 10000, products: [
+                    { id: 501, name: 'PS5 Console', price: 5999, image: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=300' },
+                    { id: 502, name: 'AirPods Pro', price: 2999, image: 'https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=300' },
+                ]
+            },
+        ]
+    },
+    bnplPlans: {
+        result: [
+            { id: 1, store: 'Marjane', product: 'Samsung TV 55"', total: 4999, paid: 2, remaining: 2, nextPayment: 1249.75, dueDate: '2024-02-15' },
+        ]
+    },
 };
 
 /**
@@ -50,6 +90,10 @@ const apiRequest = async (endpoint, options = {}) => {
         if (endpoint.includes('/wallet/operations') || endpoint.includes('/transactions')) return MOCK_DATA.transactions;
         if (endpoint.includes('/demo/users')) return MOCK_DATA.users;
         if (endpoint.includes('/credit-score')) return MOCK_DATA.creditScore;
+        if (endpoint.includes('/stores')) return MOCK_DATA.stores;
+        if (endpoint.includes('/bnpl/plans')) return MOCK_DATA.bnplPlans;
+        if (endpoint.includes('/bnpl/create')) return { result: { success: true, planId: Date.now() } };
+        if (endpoint.includes('/bnpl/pay')) return { result: { success: true } };
         return { result: { success: true } };
     }
 
