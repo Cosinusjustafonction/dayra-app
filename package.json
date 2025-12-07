@@ -1,9 +1,6 @@
 {
   "name": "dayra-app",
   "version": "1.0.0",
-  "engines": {
-    "node": "20.x"
-  },
   "dependencies": {
     "@expo/metro-runtime": "~4.0.1",
     "@react-navigation/bottom-tabs": "^7.8.11",
